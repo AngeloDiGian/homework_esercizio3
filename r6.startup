@@ -1,19 +1,21 @@
 ip addr add 10.42.132.153/30 dev eth0   # R7
 ip addr add 10.42.32.1/19 dev eth1      # Campania
-ip addr add 10.42.132.157/30 dev eth2   # R8 cambiato
+# eth2 R11 rotto
 ip addr add 10.42.132.146/30 dev eth3   # R4
+ip addr add 10.42.132.177/30 dev eth4   # R8 nuovo
 
-# Default (Internet)
-ip route add default via 10.42.132.145
+# Routing Nord (via R4)
+ip route add 10.42.120.0/21 via 10.42.132.145 dev eth3  # Toscana - Veneto (via R4)
+ip route add 10.42.128.0/22 via 10.42.132.145 dev eth3  # Liguria (via R4)
 
-# Sedi Nord (Specifiche per sicurezza, anche se c'è il default)
-ip route add 10.42.120.0/21 via 10.42.132.145   # Toscana - Veneto
-ip route add 10.42.128.0/22 via 10.42.132.145   # Liguria (su R2 via R4)
-ip route add 10.42.132.0/25 via 10.42.132.145  # Marche (su R7 via giro COMPLETO del Nord)
+# Routing Marche verso Sud (percorso più corto)
+ip route add 10.42.132.0/25 via 10.42.132.178 dev eth4  # Marche (via R8)
 
-# 2. VERSO SUD (Sedi Sud) -> Via R11 (eth1)
-# Senso Antiorario: R6 -> R11 -> R10 -> R8 -> R9
-ip route add 10.42.112.0/21 via 10.42.132.158  # Sardegna (su R11)
-ip route add 10.42.96.0/20 via 10.42.132.158   # Sicilia (su R10)
-ip route add 10.42.64.0/19 via 10.42.132.158   # Calabria (su R8)
-ip route add 10.42.0.0/19 via 10.42.132.158    # Puglia (su R9)
+# Routing Sud (via R8)
+ip route add 10.42.0.0/19 via 10.42.132.178 dev eth4    # Puglia (su R9)
+ip route add 10.42.112.0/21 via 10.42.132.178 dev eth4  # Sardegna (su R11)
+ip route add 10.42.96.0/20 via 10.42.132.178 dev eth4   # Sicilia (su R10)
+ip route add 10.42.64.0/19 via 10.42.132.178 dev eth4   # Calabria (su R8)
+
+# Routing (via R4)
+route add default via 10.42.132.145 dev eth3
