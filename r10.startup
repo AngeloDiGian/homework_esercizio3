@@ -5,4 +5,4 @@ ip addr add 10.42.132.173/30 dev eth2   # R11
 # Routing (verso R8)
 ip route add default via 10.42.132.169 dev eth0
 
-ip route add 10.42.112.0 via 10.42.132.174 dev eth2
+ip route add 10.42.112.0/21 via 10.42.132.174 dev eth2
