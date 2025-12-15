@@ -3,9 +3,9 @@ ip addr add 10.42.64.1/19 dev eth1      # Calabria
 ip addr add 10.42.132.169/30 dev eth2   # R10
 ip addr add 10.42.132.178/30 dev eth3   # R6 nuovo
 
-# Routing 
-ip route add 10.42.96.0/20 via 10.42.132.170 dev eth2
-ip route add 10.42.112.0/21 via 10.42.132.170 dev eth2
+# Routing (verso R10)
+ip route add 10.42.96.0/20 via 10.42.132.170 dev eth2   # Sicilia
+ip route add 10.42.112.0/21 via 10.42.132.170 dev eth2  # Sardegna
 
 # Routing (verso R9)
 ip route add default via 10.42.132.166 dev eth0
