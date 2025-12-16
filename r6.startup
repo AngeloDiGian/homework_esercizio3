@@ -5,8 +5,8 @@ ip addr add 10.42.132.146/30 dev eth3   # R4
 ip addr add 10.42.132.177/30 dev eth4   # R8 nuovo
 
 # Routing Nord (via R4)
-ip route add 10.42.120.0/21 via 10.42.132.145 dev eth3  # Toscana - Veneto (via R4)
-ip route add 10.42.128.0/22 via 10.42.132.145 dev eth3  # Liguria (via R4)
+ip route add 10.42.120.0/21 via 10.42.132.145 dev eth3  # Toscana - Veneto
+ip route add 10.42.128.0/22 via 10.42.132.145 dev eth3  # Liguria
 
 # Routing Marche verso Sud (percorso più corto)
 ip route add 10.42.132.0/25 via 10.42.132.178 dev eth4  # Marche (via R8)
